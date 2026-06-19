@@ -94,27 +94,28 @@ The project includes a Streamlit web application where users can:
 * View Spam Probability
 * View Feature Analysis
 
----
-
 ## Project Structure
 
+```text
 SMS_Phishing_ProjectFinal
 
-├── App/app.py
+├── App/
+│   └── app.py
 
-├── Dataset/spam.csv
+├── Dataset/
+│   └── SMSSpamCollection
 
-├── Models/spam_model.pkl
+├── Models/
+│   ├── spam_model.pkl
+│   └── tfidf_vectorizer.pkl
 
-├── Models/tfidf_vectorizer.pkl
-
-├── SMS_Phishing_Project.ipynb
+├── SMS_Phishing_ProjectFinal.ipynb
 
 ├── requirements.txt
 
 └── README.md
+```
 
----
 ## 🚀 How to Run the Project
 
 ### 1. Clone the Repository
