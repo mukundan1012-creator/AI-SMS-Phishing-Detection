@@ -29,6 +29,7 @@ Dataset Used:
 * NumPy
 * Scikit-learn
 * Streamlit
+* NLTK
 * Pickle
 * SciPy
 
@@ -49,17 +50,13 @@ These features helped improve spam detection recall.
 
 ## Machine Learning Models Tested
 
-### 1. Multinomial Naive Bayes
-
-* Accuracy: 97.40%
-* Recall: 85%
-
-### 2. Logistic Regression (Selected Model)
-
-* Accuracy: 99.01%
-* Recall: 95%
+| Model                                 | Accuracy | Recall |
+| ------------------------------------- | -------- | ------ |
+| Multinomial Naive Bayes               | 97.40%   | 85%    |
+| Logistic Regression (Balanced, C = 5) | 99.01%   | 95%    |
 
 The Logistic Regression model achieved the best performance and was selected as the final model.
+
 
 ---
 
