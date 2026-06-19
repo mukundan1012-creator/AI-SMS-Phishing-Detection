@@ -5,20 +5,30 @@ import string
 import pandas as pd
 from scipy.sparse import hstack
 
-# ==========================
+import os
+import pickle
 
-# LOAD MODEL AND TF-IDF
+current_dir = os.path.dirname(__file__)
 
-# ==========================
+model_path = os.path.join(
+    current_dir,
+    "..",
+    "Models",
+    "spam_model.pkl"
+)
 
-with open("../Models/spam_model.pkl", "rb") as file:
+tfidf_path = os.path.join(
+    current_dir,
+    "..",
+    "Models",
+    "tfidf_vectorizer.pkl"
+)
+
+with open(model_path, "rb") as file:
     model = pickle.load(file)
 
-with open("../Models/tfidf_vectorizer.pkl", "rb") as file:
+with open(tfidf_path, "rb") as file:
     tfidf = pickle.load(file)
-
-# ==========================
-
 # SIDEBAR
 
 # ==========================
