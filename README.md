@@ -115,6 +115,41 @@ SMS_Phishing_ProjectFinal
 └── README.md
 
 ---
+## 🚀 How to Run the Project
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/mukundan1012-creator/AI-SMS-Phishing-Detection.git
+```
+
+### 2. Move into the Project Directory
+
+```bash
+cd AI-SMS-Phishing-Detection
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the Streamlit Application
+
+```bash
+streamlit run App/app.py
+```
+
+### 5. Open in Browser
+
+The application will automatically open in your browser.
+
+If it does not open automatically, visit:
+
+```text
+http://localhost:8501
+```
 
 ## Author
 
