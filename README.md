@@ -118,6 +118,8 @@ AI-SMS-Phishing-Detection/
 
 ├── app_screenshot.png
 
+├── app_screenshot1.png
+
 ├── requirements.txt
 
 └── README.md
