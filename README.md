@@ -1,156 +1,163 @@
-# AI Powered SMS Phishing Detection
+# 📱 AI-Powered SMS Phishing Detection
 
-## Project Overview
+An end-to-end Machine Learning project that classifies SMS messages as
+Ham or Spam using TF-IDF, hand-crafted features, and Logistic Regression,
+deployed as an interactive Streamlit web app.
 
-This project is a Machine Learning based SMS Phishing Detection System developed using Python, Scikit-learn and Streamlit.
+---
 
-The application classifies SMS messages as either:
+## Problem
 
-* Ham (Legitimate Message)
-* Spam (Phishing / Fraudulent Message)
-
-The project uses TF-IDF vectorization, feature engineering and Logistic Regression to detect phishing messages with high accuracy.
+Phishing and spam SMS messages are a common attack vector for fraud.
+This project explores whether message content and structural patterns
+(length, digit count, special characters, URLs) can reliably distinguish
+phishing/spam messages from legitimate ones.
 
 ---
 
 ## Dataset
 
-Dataset Used:
-
-* SMS Spam Collection Dataset
-* Contains labeled SMS messages classified as spam or ham
+SMS Spam Collection Dataset — 5,574 labeled SMS messages (Ham/Spam).
 
 ---
 
-## Technologies Used
+## Approach
 
-* Python
-* Pandas
-* NumPy
-* Scikit-learn
-* Streamlit
-* NLTK
-* Pickle
-* SciPy
+Two models were trained and compared:
 
----
+| Model | Accuracy | Recall (Spam) |
+|---|---|---|
+| Multinomial Naive Bayes | 97.40% | 85% |
+| **Logistic Regression (Balanced, C=5)** | **99.01%** | **95%** |
 
-## Feature Engineering
+Logistic Regression was selected as the final model. Class weights were
+balanced to counter the natural imbalance between ham and spam messages
+in the dataset (966 ham vs. 149 spam in the test set).
 
-In addition to TF-IDF features, the following handcrafted features were added:
-
-* Message Length
-* Digit Count
-* Special Character Count
-* URL Count
-
-These features helped improve spam detection recall.
+**Features used:**
+- TF-IDF vectorization of message text
+- Message length
+- Digit count
+- Special character count
+- URL count
 
 ---
 
-## Machine Learning Models Tested
+## Results
 
-| Model                                 | Accuracy | Recall |
-| ------------------------------------- | -------- | ------ |
-| Multinomial Naive Bayes               | 97.40%   | 85%    |
-| Logistic Regression (Balanced, C = 5) | 99.01%   | 95%    |
+**Final Model Performance (test set, n=1115):**
 
-The Logistic Regression model achieved the best performance and was selected as the final model.
+| Metric | Value |
+|---|---|
+| Accuracy | 99.01% |
+| ROC-AUC | 0.9959 |
+| Precision (Spam) | 0.98 |
+| Recall (Spam) | 0.95 |
+| F1-score (Spam) | 0.96 |
 
+![Confusion Matrix](confusion_matrix.png)
 
----
-
-## Model Improvements
-
-The following improvements were applied:
-
-* Feature Engineering
-* Class Weight Balancing
-* Hyperparameter Tuning (C = 5)
-
-These improvements reduced False Negatives and improved recall.
+|  | Predicted Ham | Predicted Spam |
+|---|---|---|
+| **Actual Ham** | 963 | 3 |
+| **Actual Spam** | 8 | 141 |
 
 ---
 
-## Final Results
+## ⚠️ Limitations
 
-| Metric          | Value  |
-| --------------- | ------ |
-| Accuracy        | 99.01% |
-| Recall          | 95%    |
-| False Negatives | 8      |
+- **8 false negatives**: 8 out of 149 real spam messages (~5%) were
+  missed and classified as ham. In a phishing-detection context, this
+  is the more dangerous error type, since a missed phishing message
+  could still reach and deceive a user.
+- **3 false positives**: 3 legitimate messages were flagged as spam —
+  low impact, but a minor usability cost.
+- The dataset (SMS Spam Collection) is small and relatively old; messages
+  reflect spam patterns from that era and may not generalize perfectly
+  to newer phishing tactics (e.g., more sophisticated social engineering
+  with no obvious spam keywords or URLs).
 
 ---
 
-## Streamlit Application
+## Tech Stack
 
-The project includes a Streamlit web application where users can:
+Python · Pandas · NumPy · Scikit-Learn · NLTK · SciPy · Streamlit · Pickle
 
-* Enter SMS messages
-* Detect Spam or Ham messages
-* View Spam Probability
-* View Feature Analysis
+---
 
 ## Project Structure
-
-```text
-SMS_Phishing_ProjectFinal
+AI-SMS-Phishing-Detection/
 
 ├── App/
+
 │   └── app.py
 
 ├── Dataset/
+
 │   └── SMSSpamCollection
 
 ├── Models/
+
 │   ├── spam_model.pkl
+
 │   └── tfidf_vectorizer.pkl
 
+├── src/
+
+│   ├── data_preprocessing.py
+
+│   ├── train_model.py
+
+│   ├── evaluate.py
+
+│   └── main.py
+
 ├── SMS_Phishing_ProjectFinal.ipynb
+
+├── confusion_matrix.png
+
+├── app_screenshot.png
 
 ├── requirements.txt
 
 └── README.md
-```
+---
 
-## 🚀 How to Run the Project
+## App Preview
 
-### 1. Clone the Repository
+![App Screenshot](app_screenshot.png)
+![App Screenshot](app_screenshot1.png)
+
+---
+
+## How to Run Locally
 
 ```bash
 git clone https://github.com/mukundan1012-creator/AI-SMS-Phishing-Detection.git
-```
-
-### 2. Move into the Project Directory
-
-```bash
 cd AI-SMS-Phishing-Detection
-```
-
-### 3. Install Dependencies
-
-```bash
 pip install -r requirements.txt
-```
-
-### 4. Run the Streamlit Application
-
-```bash
 streamlit run App/app.py
 ```
 
-### 5. Open in Browser
-
-The application will automatically open in your browser.
-
-If it does not open automatically, visit:
-
-```text
-http://localhost:8501
+To retrain the model from scratch:
+```bash
+cd src
+python main.py
 ```
+
+---
+
+## If I Rebuilt This Today
+
+I would test the model against more recent phishing message examples
+(not just this dataset's era), add a feature-importance plot to show
+which engineered features contribute most, and explore whether a
+neural network (e.g., a simple LSTM) improves recall on the false
+negatives without significantly increasing false positives.
+
+---
 
 ## Author
 
-Mukundan D
-
-B.E Electronics and Communication Engineering
+**Mukundan D**
+B.E. Electronics and Communication Engineering
